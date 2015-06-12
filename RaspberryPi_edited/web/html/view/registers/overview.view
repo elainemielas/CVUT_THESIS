@@ -1,0 +1,45 @@
+{{ include "main.view" }}
+
+{{ block "head" }}
+   <title>Registers overview</title>
+   <style>
+      .error 
+      {
+          color: red;
+          font-weight: bold;
+      }
+   </style>
+{{ endblock }}
+
+{{ block "reg_overview" }}
+   <table>
+      <tr><th>id</th><th>description</th><th>value</th><th>change</th></tr>
+      {{ for i in reg }}
+         <tr>
+            <td>{{ i[ "name" ] }}</td>
+            <td>{{ i[ "desc" ] }}</td>
+            <td>{{ i[ "value" ] }}</td>
+            <td>
+               <form method="POST" action="">
+                  <input type="hidden" name="reg" value="{{ i[ "name" ] }}" />
+                  <input type="input" name="value" maxlength="10" size="4" {{ if i[ "flag" ] }}disabled="disabled"{{ endif }} />
+               </form>
+            </td>
+         </tr>
+      {{ endfor }}
+   </table> 
+{{ endblock }}
+
+{{ block "main" }}
+   
+   <h1>Registers overview</h1>
+
+   {{ if error }}
+      <span class="error">{{ error }}</span>
+   {{ else }}
+      {{ blockprint "reg_overview" }}
+   {{ endif }}
+
+   
+
+{{ endblock }}

@@ -1,0 +1,38 @@
+NET "clk" LOC = C9;
+NET "reset" LOC = K17 | PULLUP;
+
+// serial port
+//NET "rx" LOC = R7;
+//NET "tx" LOC = M14;
+
+// rpi
+NET "rx" LOC = C5;
+NET "tx" LOC = D5;
+
+NET "led[0]" LOC = F12;
+NET "led[1]" LOC = E12;
+NET "led[2]" LOC = E11;
+NET "led[3]" LOC = F11;
+NET "led[4]" LOC = C11;
+NET "led[5]" LOC = D11;
+NET "led[6]" LOC = E9;
+NET "led[7]" LOC = F9;
+
+NET "lcd_dout[0]" LOC = R15;
+NET "lcd_dout[1]" LOC = R16;
+NET "lcd_dout[2]" LOC = P17;
+NET "lcd_dout[3]" LOC = M15;
+
+NET "lcd_rs" LOC = L18;
+NET "lcd_rw" LOC = L17;
+NET "lcd_e" LOC = M18;
+
+NET "renew_reg" LOC = D18 | PULLUP;
+
+NET "rot_a" LOC = K18 | PULLDOWN;
+NET "rot_b" LOC = G18 | PULLDOWN;
+
+NET "sw0" LOC = L13;
+NET "sw1" LOC = L14;
+NET "sw2" LOC = H18;
+NET "sw3" LOC = N17;

@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sk-sk" lang="sk-sk" dir="ltr" >
+<head>
+   <meta charset="UTF-8">
+   {{ blockprint "head" }}
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<div style="display: table; height: 100%;">
+		<div class="menu_wrapper">
+			<img style="width: 30%; margin: 15% 35% 15% 35%;" src="/img/logo.svg" />
+			{{ menuprint }}
+		</div>
+		<div class="main">
+		   {{ blockprint "main" }}
+		</div>
+	</div>
+</body>

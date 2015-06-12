@@ -1,0 +1,670 @@
+{{ include "main.view" }}
+
+{{ block "head" }}
+   <title>GPIO overview</title>
+   <style >
+      .gpio-wrapper
+      {
+         float: left;
+      }
+      .gpio
+      {
+
+      }
+      .gpio td
+      {
+         padding-top: 0;
+         padding-bottom: 0;
+         background-color: none;
+         font-size: 0.8em;
+      }
+      .gpio tr td:first-child
+      {
+         text-align: right;
+      }
+      .gpio input
+      {
+         margin: 0.25em;
+      }
+      .gpio form 
+      {
+         float: left;
+         font-weight: bold;
+      }
+      .pin
+      {
+         padding: 0;
+         background-color: #aaccff;
+         border-radius: 0.3em;
+      }
+
+      .error
+      {
+         font-weight: bold;
+         color: red;
+      }
+   </style>
+   <script>
+
+      function init_form()
+      {
+         var formList = document.getElementsByTagName( "form" );
+
+         for( var i = 0; i < formList.length; i++ )
+            formList[ i ].addEventListener( "change", function(){ this.submit(); }, false );
+      }
+
+      window.onload = init_form;
+   
+   </script> 
+{{ endblock }}
+
+{{ block "main" }}
+   <h1>GPIO overview</h1>
+
+   {{ if error }}
+      <div class="error">{{ error }}</div>
+   {{ endif }}
+
+   <div class="gpio-wrapper">
+   <h3>GPIO header P1</h3>
+
+   <table class="gpio"> 
+      <tr>
+         <td>3.3V</td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td>5V
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="2" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "2" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "2" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "2" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "2" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "2" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "2" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "2" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "2" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPIO2
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="2" />
+               <input type="checkbox" name="value" {{ if pin[ "2" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "2" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td>5V</td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="3" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "3" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "3" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "3" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "3" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "3" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "3" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "3" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "3" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPIO3
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="3" />
+               <input type="checkbox" name="value" {{ if pin[ "3" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "3" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td>GND</td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="4" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "4" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "4" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "4" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "4" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "4" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "4" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "4" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "4" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPIO4
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="4" />
+               <input type="checkbox" name="value" {{ if pin[ "4" ][ "value" ] }}checked{{ endif }} 
+                                                   {{ if pin[ "4" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="14" />
+               <input type="checkbox" name="value" {{ if pin[ "14" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "14" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="14" />
+               GPIO14
+               <select name="func">
+                  <option value="0" {{ if pin[ "14" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "14" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "14" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "14" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "14" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "14" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "14" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "14" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>GND</td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="15" />
+               <input type="checkbox" name="value" {{ if pin[ "15" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "15" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="15" />
+               GPIO15
+               <select name="func">
+                  <option value="0" {{ if pin[ "15" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "15" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "15" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "15" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "15" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "15" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "15" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "15" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="17" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "17" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "17" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "17" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "17" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "17" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "17" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "17" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "17" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI17
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="17" />
+               <input type="checkbox" name="value" {{ if pin[ "17" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "17" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="18" />
+               <input type="checkbox" name="value" {{ if pin[ "18" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "18" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="18" />
+               GPIO18
+               <select name="func">
+                  <option value="0" {{ if pin[ "18" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "18" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "18" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "18" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "18" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "18" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "18" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "18" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="27" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "27" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "27" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "27" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "27" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "27" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "27" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "27" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "27" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI27
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="27" />
+               <input type="checkbox" name="value" {{ if pin[ "27" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "27" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td>GND</td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="22" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "22" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "22" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "22" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "22" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "22" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "22" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "22" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "22" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI22
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="22" />
+               <input type="checkbox" name="value" {{ if pin[ "22" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "22" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="23" />
+               <input type="checkbox" name="value" {{ if pin[ "23" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "23" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="23" />
+               GPIO23
+               <select name="func">
+                  <option value="0" {{ if pin[ "23" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "23" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "23" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "23" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "23" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "23" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "23" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "23" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>3.3V</td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="24" />
+               <input type="checkbox" name="value" {{ if pin[ "24" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "24" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="24" />
+               GPIO24
+               <select name="func">
+                  <option value="0" {{ if pin[ "24" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "24" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "24" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "24" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "24" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "24" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "24" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "24" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="10" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "10" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "10" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "10" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "10" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "10" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "10" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "10" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "10" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI10
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="10" />
+               <input type="checkbox" name="value" {{ if pin[ "10" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "10" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td>GND</td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="9" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "9" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "9" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "9" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "9" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "9" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "9" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "9" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "9" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI9
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="9" />
+               <input type="checkbox" name="value" {{ if pin[ "9" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "9" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="25" />
+               <input type="checkbox" name="value" {{ if pin[ "25" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "25" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="25" />
+               GPIO25
+               <select name="func">
+                  <option value="0" {{ if pin[ "25" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "25" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "25" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "25" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "25" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "25" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "25" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "25" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="11" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "11" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "11" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "11" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "11" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "11" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "11" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "11" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "11" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI11
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="11" />
+               <input type="checkbox" name="value" {{ if pin[ "11" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "11" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="8" />
+               <input type="checkbox" name="value" {{ if pin[ "8" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "8" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="8" />
+               GPIO8
+               <select name="func">
+                  <option value="0" {{ if pin[ "8" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "8" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "8" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "8" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "8" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "8" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "8" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "8" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>GND</td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="7" />
+               <input type="checkbox" name="value" {{ if pin[ "7" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "7" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="7" />
+               GPIO7
+               <select name="func">
+                  <option value="0" {{ if pin[ "7" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "7" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "7" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "7" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "7" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "7" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "7" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "7" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+
+   </table>
+</div>
+<div class="gpio-wrapper">
+<h3>GPIO header P6</h2>
+
+   <table class="gpio"> 
+      <tr>
+         <td>3.3V</td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td>5V</td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="29" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "29" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "29" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "29" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "29" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "29" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "29" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "29" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "29" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI29
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="29" />
+               <input type="checkbox" name="value" {{ if pin[ "29" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "29" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="28" />
+               <input type="checkbox" name="value" {{ if pin[ "28" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "28" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="28" />
+               GPIO28
+               <select name="func">
+                  <option value="0" {{ if pin[ "28" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "28" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "28" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "28" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "28" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "28" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "28" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "28" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="31" />
+               <select name="func">
+                  <option value="0" {{ if pin[ "31" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "31" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "31" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "31" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "31" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "31" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "31" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "31" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+               GPI31
+            </form> 
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="31" />
+               <input type="checkbox" name="value" {{ if pin[ "31" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "31" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td class="pin">
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="value" />
+               <input type="hidden" name="pin" value="30" />
+               <input type="checkbox" name="value" {{ if pin[ "30" ][ "value" ] }}checked{{ endif }} 
+                                      {{ if pin[ "30" ][ "func" ] != 1 }}disabled{{ endif }}>
+            </form>
+         </td>
+         <td>
+            <form method="POST" action="">
+               <input type="hidden" name="action" value="func" />
+               <input type="hidden" name="pin" value="30" />
+               GPIO30
+               <select name="func">
+                  <option value="0" {{ if pin[ "30" ][ "func" ] == 0 }}selected="selected"{{ endif }}>in</option>
+                  <option value="1" {{ if pin[ "30" ][ "func" ] == 1 }}selected="selected"{{ endif }}>out</option>
+                  <option value="4" {{ if pin[ "30" ][ "func" ] == 4 }}selected="selected"{{ endif }}>alt0</option>
+                  <option value="5" {{ if pin[ "30" ][ "func" ] == 5 }}selected="selected"{{ endif }}>alt1</option>
+                  <option value="6" {{ if pin[ "30" ][ "func" ] == 6 }}selected="selected"{{ endif }}>alt2</option>
+                  <option value="7" {{ if pin[ "30" ][ "func" ] == 7 }}selected="selected"{{ endif }}>alt3</option>
+                  <option value="3" {{ if pin[ "30" ][ "func" ] == 3 }}selected="selected"{{ endif }}>alt4</option>
+                  <option value="2" {{ if pin[ "30" ][ "func" ] == 2 }}selected="selected"{{ endif }}>alt5</option>
+               </select>
+            </form> 
+         </td>
+      </tr>
+      <tr>
+         <td>GND</td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td class="pin"><input type="checkbox" disabled></td>
+         <td>GND</td>
+      </tr>
+
+   </table>
+   </div>
+
+{{ endblock }}

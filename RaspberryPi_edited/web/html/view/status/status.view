@@ -1,0 +1,18 @@
+{{ include "main.view" }}
+
+{{ block "head" }}
+   <title>Status</title>
+{{ endblock }}
+
+{{ block "main" }}
+   
+   <h1>Status</h1>
+
+   <table>
+      <tr><th>ram usage:</th><td>{{ usedram }} %</td></tr>
+      <tr><th>load:</th><td>{{ load }} %</td></tr>
+      <tr><th>temperature:</th><td>{{ temp }} °C</td></tr>
+      <tr><th>uptime:</th><td>{{ day }} day {{ hour }} hour {{ min }} min</td></tr>
+   </table>
+
+{{ endblock }}
